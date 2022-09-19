@@ -1,0 +1,26 @@
+server:
+  port: 8201
+spring:
+  application:
+    name: hospitalSet-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: lyp123
+    url: jdbc:mysql://6.6.6.6:3306/yygh_hosp
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+logging:
+  level:
+    com.atguigu.yygh.hosp.mapper: debug
