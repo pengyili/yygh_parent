@@ -1,12 +1,22 @@
 package com.atguigu.yygh.common.result;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.HashMap;
 import java.util.Map;
 
+
+
+@ApiModel(description = "统一的返回结果")
 public record Result(
+        @ApiModelProperty( required = true,value ="统一返回的状态码")
          Integer code,
+         @ApiModelProperty(value = "访问是否成功"  , required = true)
          boolean flag,
+         @ApiModelProperty( value = "数据返回的提示信息" , required = true)
          String msg ,
+         @ApiModelProperty( value = "封装返回到前端页面的数据" , dataType = "Map" )
          Map<String , Object> data
 ) {
    public static Result ok(){

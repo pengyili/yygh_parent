@@ -25,6 +25,7 @@ public class BaseEntity implements Serializable {
     @TableField("create_time")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "更新时间")
     @TableField("update_time")
     private Date updateTime;

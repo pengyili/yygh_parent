@@ -11,16 +11,14 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  profiles:
+    active: dev
 
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: isDeleted
       logic-delete-value: 1
       logic-not-delete-value: 0
-logging:
-  level:
-    com.atguigu.yygh.hosp.mapper: debug
