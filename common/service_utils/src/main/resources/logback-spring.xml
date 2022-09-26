@@ -133,7 +133,20 @@
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
         <!--可以输出项目中的debug日志，包括mybatis的sql日志-->
-        <logger name="com.atguigu" level="DEBUG" />
+        <logger level="DEBUG" name="com.atguigu.yygh">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="INFO_FILE"/>
+            <appender-ref ref="WARN_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+        </logger>
+
+        <!--可以输出项目中的debug日志，包括mybatis的sql日志-->
+        <logger level="DEBUG" name="org.springframework.data.mongodb">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="INFO_FILE"/>
+            <appender-ref ref="WARN_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+        </logger>
 
         <!--
             root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性

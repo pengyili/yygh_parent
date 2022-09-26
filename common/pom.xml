@@ -29,7 +29,6 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-
             </dependency>
 
             <!--lombok用来简化实体类：需要安装lombok插件-->
@@ -82,6 +81,16 @@
                 <version>3.0.3</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+            </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>com.github.xiaoymin</groupId>-->
+<!--                <artifactId>knife4j-spring-boot-starter</artifactId>-->
+<!--                <version>2.0.9</version>-->
+<!--            </dependency>-->
         </dependencies>
 
 

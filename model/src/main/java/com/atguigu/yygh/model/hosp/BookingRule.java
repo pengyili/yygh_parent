@@ -49,11 +49,11 @@ public class BookingRule {
 	 *
 	 * @param rule
 	 */
-	public void setRule(String rule) {
-		if(!StringUtils.isEmpty(rule)) {
-			this.rule = JSONArray.parseArray(rule, String.class);
-		}
-	}
+//	public void setRule(String rule) {
+//		if(!StringUtils.isEmpty(rule)) {
+//			this.rule = JSONArray.parseArray(rule, String.class);
+//		}
+//	}
 
 }
 

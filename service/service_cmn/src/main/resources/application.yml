@@ -1,0 +1,40 @@
+server:
+  port: 6527
+spring:
+  application:
+    name: yygh_cmn_dict
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: lyp123
+    url: jdbc:mysql://6.6.6.6:3306/yygh_cmn
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+      active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    host: 6.6.6.6
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0

@@ -8,11 +8,13 @@ spring:
     username: root
     password: lyp123
     url: jdbc:mysql://6.6.6.6:3306/yygh_hosp
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   profiles:
     active: dev
+
 
 mybatis-plus:
   configuration:

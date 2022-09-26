@@ -25,6 +25,24 @@ public record Result(
    public static Result fail(){
        return new Result(ResultEnum.FAIL.getCode(),  ResultEnum.FAIL.isFlag(), ResultEnum.FAIL.getMsg(), new HashMap<>());
    }
+   public static Result fail( String msg ){
+       return new Result(ResultEnum.FAIL.getCode() , true , msg , new HashMap<>());
+   }
+   public static Result ok( String msg ){
+       return new Result(ResultEnum.SUCCESS.getCode(), true , msg , new HashMap<>());
+   }
+   public static Result fail( Integer code, String msg ){
+       return new Result(code , true , msg , new HashMap<>());
+   }
+   public static Result ok( Integer code, String msg  ){
+       return new Result(code, true , msg , new HashMap<>());
+   }
+   public static Result fail( Integer code, String msg ,Map<String,Object> map ){
+       return new Result(code , true , msg , map);
+   }
+   public static Result ok( Integer code, String msg  , Map<String,Object> map ){
+       return new Result(code, true , msg , map);
+   }
 
    public static Result ok(ResultEnum resultEnum){
        return new Result(resultEnum.getCode(),  true, resultEnum.getMsg(), new HashMap<>());
@@ -32,7 +50,6 @@ public record Result(
    public static Result fail(ResultEnum resultEnum){
        return new Result(resultEnum.getCode(), false, resultEnum.getMsg(), new HashMap<>());
    }
-
 
    public Result data(String key , Object value){
         this.data.put(key,value);
@@ -43,5 +60,7 @@ public record Result(
         this.data.putAll(map);
         return this;
    }
+
+
 
 }

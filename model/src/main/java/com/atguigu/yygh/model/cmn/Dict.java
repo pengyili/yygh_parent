@@ -1,5 +1,8 @@
 package com.atguigu.yygh.model.cmn;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.atguigu.yygh.model.base.BaseEntity;
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,6 +37,7 @@ public class Dict {
     private Date createTime;
 
     @ApiModelProperty(value = "更新时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField("update_time")
     private Date updateTime;
 
