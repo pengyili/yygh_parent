@@ -15,7 +15,7 @@ public record Result(
          @ApiModelProperty(value = "访问是否成功"  , required = true)
          boolean flag,
          @ApiModelProperty( value = "数据返回的提示信息" , required = true)
-         String msg ,
+         String message ,
          @ApiModelProperty( value = "封装返回到前端页面的数据" , dataType = "Map" )
          Map<String , Object> data
 ) {

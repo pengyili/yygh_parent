@@ -20,8 +20,7 @@ import java.util.random.RandomGenerator;
 
 @Api(tags = "医院设置相关服务" , protocols = "http" )
 @RestController
-@RequestMapping("admin/hosp/hospitalSet")
-@CrossOrigin
+@RequestMapping("/admin/hosp/hospitalSet")
 public class HospitalSetController {
     @Autowired
     private HospitalSetService hospitalSetService ;
@@ -68,9 +67,14 @@ public class HospitalSetController {
         return Result.ok().data("item" , hospitalSet);
     }
 
-    @PutMapping("/changeStatus/{status}")
-    public Result changeStatus(@RequestBody List<Long> ids  , @PathVariable Integer status){
-        hospitalSetService.changeStatus(ids , status);
+//    @PutMapping("/changeStatus/{status}")
+//    public Result changeStatus(@RequestBody List<Long> ids  , @PathVariable Integer status){
+//        hospitalSetService.changeStatus(ids , status);
+//        return Result.ok();
+//    }
+    @PutMapping("/changeStatus/{id}/{status}")
+    public Result changeStatus(@PathVariable Integer id  , @PathVariable Integer status){
+        hospitalSetService.changeStatus(id , status);
         return Result.ok();
     }
 

@@ -1,0 +1,18 @@
+server:
+  port: 8271
+spring:
+  application:
+    name: oss-service
+  cloud:
+    nacos:
+      server-addr: 6.6.6.6:8848
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+oss:
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  accessKeyId: LTAI5t6SJAr3rVqCnsp7jq18
+  accessKeySecret: G7qyDH21y08yQlKjzHM8f6u99gQpHE
+  bucketName: wh0518-yygh

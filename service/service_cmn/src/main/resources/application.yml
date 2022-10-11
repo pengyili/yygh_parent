@@ -1,8 +1,8 @@
 server:
-  port: 6527
+  port: 8264
 spring:
   application:
-    name: yygh_cmn_dict
+    name: cmn-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -27,6 +27,11 @@ spring:
         max-wait: -1
         max-idle: 5
         min-idle: 0
+  cloud:
+    nacos:
+      server-addr: 6.6.6.6:8848
+
+
 
 
 

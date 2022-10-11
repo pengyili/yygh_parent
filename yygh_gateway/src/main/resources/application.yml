@@ -1,0 +1,36 @@
+server:
+  port: 4577
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      server-addr: 6.6.6.6:8848
+      username: nacos
+      password: nacos
+    gateway:
+      routes:
+        - id:
+          uri: lb://cmn-service
+          predicates:
+            - Path=/admin/cmn/dict/**,/admin/cmn/**
+        - id:
+          uri: lb://sms-service
+          predicates:
+            - Path=/user/sms/**
+        - id:
+          uri: lb://user-service
+          predicates:
+            - Path=/user/info/**,/user/wx/**,/admin/userinfo/**
+        - id:
+          uri: lb://orders-service
+          predicates:
+            - Path=/user/order/**,/user/weixin/**
+        - id:
+          uri: lb://hosp-service
+          predicates:
+            - Path=/admin/hosp/hospital/**,/admin/hosp/hospitalSet/**,/admin/user/** ,/user/hosp/**
+        - id:
+          uri: lb://oss-service
+          predicates:
+            - Path=/*/oss/**

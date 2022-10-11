@@ -1,0 +1,37 @@
+server:
+  port: 8666
+spring:
+  application:
+    name: orders-service
+  cloud:
+    nacos:
+      server-addr: 6.6.6.6:8848
+  profiles:
+    active: dev
+  datasource:
+    username: root
+    password: lyp123
+    url: jdbc:mysql://6.6.6.6:3306/yygh_order?useSSL=false&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 6.6.6.6
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    dynamic: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    format:
+      date-time: yyyy-MM-dd
+      date: yyyy-MM-dd
+  main:
+    allow-circular-references: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+wx:
+  appid: wx74862e0dfcf69954
+  mchId: 1558950191
+  partnerKey: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb

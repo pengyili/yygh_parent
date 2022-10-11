@@ -6,12 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.Objects;
 
 @Slf4j
@@ -47,13 +46,16 @@ public class ControllerExceptionAdvice {
             Long endTime = System.currentTimeMillis();
             log.debug("执行成功 ,耗时{}ms " , endTime -  startTime  );
 
-            log.debug("返回的参数数据为[{}]"+JSON.toJSONString(returnValue));
+//            log.debug("返回的参数数据为[{}]"+JSON.toJSONString(returnValue));
 
             return  returnValue;
         } catch (Throwable e) {
-            log.warn(e.getMessage());
+            if(e instanceof YYGHException yyException){
+                log.error(yyException.getMessage());
+                throw  new YYGHException( yyException.getCode(), yyException.getMessage());
+            }
             e.printStackTrace();
-            throw new YYGHException(30000 , "系统出错了请稍后再试");
+            throw new RuntimeException( "系统出错了请稍后再试");
         }
 
     }

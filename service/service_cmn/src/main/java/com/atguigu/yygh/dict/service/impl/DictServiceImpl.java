@@ -30,4 +30,36 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         Dict dict = baseMapper.selectOne(new LambdaQueryWrapper<Dict>().select(Dict::getId).eq(Dict::getDictCode, code));
         return getDictByParentId(dict.getId());
     }
+
+    @Override
+    public String getNameByValueAndParentCode(String value  , String parentDictCode) {
+
+        Dict dict1 = baseMapper.selectOne(
+                new LambdaQueryWrapper<Dict>().select(Dict::getId).eq(Dict::getDictCode, parentDictCode)
+        );
+        Dict dict = baseMapper.selectOne(
+                new LambdaQueryWrapper<Dict>()
+                        .select(Dict::getName)
+                        .eq(Dict::getValue, value)
+                        .eq(Dict::getParentId  , dict1.getId())
+        );
+        if(dict!= null ){
+            return dict.getName();
+        }
+        return null;
+    }
+
+    @Override
+    public String getNameByValue(String value) {
+
+        List<Dict> dicts = baseMapper.selectList(
+                new LambdaQueryWrapper<Dict>()
+                        .select(Dict::getName)
+                        .eq(Dict::getValue, value)
+        );
+        if (dicts!= null && (!dicts.isEmpty())){
+            return dicts.get(0).getName() ;
+        }
+        return null ;
+    }
 }

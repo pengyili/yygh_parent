@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <modules><module>service_utils</module></modules>
+    <modules><module>service_utils</module>
+        <module>rabbit_utils</module>
+    </modules>
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
 

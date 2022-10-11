@@ -5,7 +5,10 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
     SUCCESS(20000 , "成功" , true),
-    FAIL(30000 , "失败" , false);
+    FAIL(30000 , "失败" , false),
+
+    API_SUCCESS(200 ,"成功" , true),
+    API_FAIL(300,"失败" , false);
 
     private final Integer code;
     private final String msg;

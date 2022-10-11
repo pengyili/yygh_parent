@@ -26,14 +26,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 @RequestMapping("/admin/cmn/dict")
 @Api(tags = "字典查询" , protocols="http")
-@CrossOrigin
 public class DictController {
 
     @Autowired
     private DictService dictService;
 
     private static final Map<Long, DictEeVo> DICT_EE_VO_MAP_CACHE = new ConcurrentHashMap<>();
-
 
     @ApiImplicitParam(name = "parentId", value = "根据id获取此节点下一级的所有节点" ,paramType = "path" , required = true , dataTypeClass = Long.class)
     @GetMapping("/getDictByParentId/{parentId}")
@@ -77,4 +75,6 @@ public class DictController {
         EasyExcel.read(file.getInputStream(), DictEeVo.class, new DictUpdateListener(dictService.getBaseMapper() ,DICT_EE_VO_MAP_CACHE)).doReadAll();
         return Result.ok();
     }
+
+
 }

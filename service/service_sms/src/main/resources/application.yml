@@ -1,0 +1,23 @@
+server:
+  port: 8200
+spring:
+  application:
+    name: sms-service
+  profiles:
+    active: dev
+  redis:
+    host: 6.6.6.6
+    port: 6379
+  cloud:
+    nacos:
+      server-addr: 6.6.6.6:8848
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  rabbitmq:
+    host: 6.6.6.6
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    dynamic: true

@@ -9,4 +9,5 @@ public interface HospitalSetService extends IService<HospitalSet> {
 
 
     void changeStatus(List<Long> ids ,Integer status);
+    void changeStatus(Integer id,Integer status );
 }

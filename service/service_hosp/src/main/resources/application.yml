@@ -2,19 +2,40 @@ server:
   port: 8201
 spring:
   application:
-    name: hospitalSet-service
+    name: hosp-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: lyp123
     url: jdbc:mysql://6.6.6.6:3306/yygh_hosp
-
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  data:
+    mongodb:
+      host: 6.6.6.6
+      port: 27017
+      database: yygh
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+    format:
+      date-time: yyyy-MM-dd
+      date: yyyy-MM-dd
   profiles:
     active: dev
-
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 6.6.6.6:8848
+  rabbitmq:
+    host: 6.6.6.6
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    dynamic: true
 
 mybatis-plus:
   configuration:
@@ -24,3 +45,6 @@ mybatis-plus:
       logic-delete-field: isDeleted
       logic-delete-value: 1
       logic-not-delete-value: 0
+feign:
+  httpclient:
+    connection-timeout: 5000

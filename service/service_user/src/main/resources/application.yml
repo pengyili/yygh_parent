@@ -1,0 +1,34 @@
+server:
+  port: 8160
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      server-addr: 6.6.6.6:8848
+  datasource:
+    password: lyp123
+    username: root
+    url: jdbc:mysql://6.6.6.6:3306/yygh_user?useSSL=false&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 6.6.6.6
+    port: 6379
+
+  profiles:
+    active: dev
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    format:
+      date-time: yyyy-MM-dd
+      date: yyyy-MM-dd
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+wx:
+  appid: wxed9954c01bb89b47
+  appSecret: a7482517235173ddb4083788de60b90e
+  redirectUri: http://localhost:8160/user/wx/callback
