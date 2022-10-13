@@ -7,6 +7,7 @@ import com.atguigu.yygh.vo.hosp.BookingScheduleRuleVo;
 import com.atguigu.yygh.vo.hosp.DepartmentVo;
 import com.atguigu.yygh.vo.hosp.HospitalQueryVo;
 import com.atguigu.yygh.vo.hosp.ScheduleQueryVo;
+import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 
 import java.util.Date;
@@ -35,9 +36,9 @@ public interface HospitalService {
 
     Hospital getHospitalByHoscode(String hoscode);
 
-    Department getHospitalByHoscodeAndDepcode(String hoscode , String depcode);
+    Department getDepByHoscodeAndDepcode(String hoscode , String depcode);
 
-
+    DateTime parseDateAndString(Date date , String  str );
     Map buildFrontBookingScheduleRuleVo(Integer page , Integer limit  , String hoscode , String depcode );
 
     List<Schedule> getWorkDateScheduleList(String hoscode, String depcode, Date workDate);

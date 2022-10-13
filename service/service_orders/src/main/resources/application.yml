@@ -31,7 +31,9 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+
 wx:
   appid: wx74862e0dfcf69954
   mchId: 1558950191
   partnerKey: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb
+  cert: D:\Development\cert\apiclient_cert.p12

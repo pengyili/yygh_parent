@@ -1,5 +1,8 @@
 package com.atguigu.yygh.utils;
 
+import com.alibaba.nacos.common.http.param.Header;
+import com.atguigu.yygh.WeiXinProperties;
+import com.github.wxpay.sdk.WXPayUtil;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -12,6 +15,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
@@ -44,6 +48,9 @@ public class HttpClient {
     private String xmlParam;
     private boolean isHttps;
     private boolean isCert = false;
+
+
+    private String cert = null ;
     //证书密码 微信商户号（mch_id）
     private String certPassword;
 
@@ -59,8 +66,9 @@ public class HttpClient {
         return isCert;
     }
 
-    public void setCert(boolean cert) {
+    public void setCert(boolean cert , String certString ) {
         isCert = cert;
+        this.cert = certString;
     }
 
     public String getXmlParam() {
@@ -99,6 +107,11 @@ public class HttpClient {
     }
 
     public void post() throws ClientProtocolException, IOException {
+        HttpPost http = new HttpPost(url);
+        setEntity(http);
+        execute(http);
+    }
+    public void post( String authorization ) throws ClientProtocolException, IOException {
         HttpPost http = new HttpPost(url);
         setEntity(http);
         execute(http);
@@ -148,18 +161,22 @@ public class HttpClient {
             if (isHttps) {
                 if(isCert) {
                     //TODO 需要完善
-//                    FileInputStream inputStream = new FileInputStream(new File(ConstantPropertiesUtils.CERT));
+                    FileInputStream inputStream = new FileInputStream(new File(this.cert));
                     KeyStore keystore = KeyStore.getInstance("PKCS12");
                     char[] partnerId2charArray = certPassword.toCharArray();
-//                    keystore.load(inputStream, partnerId2charArray);
+                    keystore.load(inputStream, partnerId2charArray);
                     SSLContext sslContext = SSLContexts.custom().loadKeyMaterial(keystore, partnerId2charArray).build();
                     SSLConnectionSocketFactory sslsf =
                             new SSLConnectionSocketFactory(sslContext,
-                                    new String[] { "TLSv1" },
+                                    null ,
                                     null,
                                     SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+
+
+
                     httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
                 } else {
+
                     SSLContext sslContext = new SSLContextBuilder()
                             .loadTrustMaterial(null, new TrustStrategy() {
                                 // 信任所有
@@ -177,6 +194,7 @@ public class HttpClient {
             } else {
                 httpClient = HttpClients.createDefault();
             }
+
             CloseableHttpResponse response = httpClient.execute(http);
             try {
                 if (response != null) {

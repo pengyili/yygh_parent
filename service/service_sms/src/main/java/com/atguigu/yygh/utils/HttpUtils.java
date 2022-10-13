@@ -1,4 +1,4 @@
-package com.atguigu.yygh.utlis;
+package com.atguigu.yygh.utils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;

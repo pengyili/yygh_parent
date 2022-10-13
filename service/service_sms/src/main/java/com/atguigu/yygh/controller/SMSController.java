@@ -2,7 +2,7 @@ package com.atguigu.yygh.controller;
 
 import com.atguigu.yygh.common.exception.YYGHException;
 import com.atguigu.yygh.common.result.Result;
-import com.atguigu.yygh.utlis.HttpUtils;
+import com.atguigu.yygh.utils.HttpUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.random.RandomGenerator;
 

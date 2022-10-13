@@ -192,7 +192,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public Department getHospitalByHoscodeAndDepcode(String hoscode, String depcode) {
+    public Department getDepByHoscodeAndDepcode(String hoscode, String depcode) {
         return mongoTemplate.findOne(Query.query(Criteria.where("hoscode").is(hoscode).and("depcode").is(depcode)) , Department.class);
     }
 
@@ -323,11 +323,10 @@ public class HospitalServiceImpl implements HospitalService {
         return map ;
     }
 
-    public static DateTime parseDateAndString(Date date , String  str ){
+    public  DateTime parseDateAndString(Date date , String  str ){
         DateTime dateTime = new DateTime(date);
         String s = dateTime.toString("yyyy-MM-dd ");
-        return DateTimeFormat.forPattern("yyyy-MM-dd hh:mm").parseDateTime(s + str);
-
+        return DateTimeFormat.forPattern("yyyy-MM-dd HH:mm").parseDateTime(s + str);
     }
 
     @Override

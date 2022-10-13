@@ -65,4 +65,11 @@ public class OrderController {
         orderService.setOrderStatus(order);
         return Result.ok().data("item" , order ) ;
     }
+
+    @PutMapping("/cancelOrder/{orderId}")
+    public Result cancelOrder(@PathVariable Long orderId){
+        orderService.cancelOrder(orderId);
+        return Result.ok();
+    }
+
 }

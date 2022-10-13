@@ -32,10 +32,21 @@ public class HospMq {
             )
     } ,admin = "amqpAdmin")
     public void updateSchedule(OrderMqVo order , Message message , Channel channel) throws IOException {
-        channel.basicAck(message.getMessageProperties().getDeliveryTag() , false );
-        Schedule scheduleById = hospitalService.getScheduleById(order.getScheduleId());
-        scheduleById.setReservedNumber(order.getReservedNumber());
-        scheduleById.setAvailableNumber(order.getAvailableNumber());
-        apiService.saveSchedule(scheduleById);
+
+        assert order != null;
+        if( order .getAvailableNumber() != null && order
+                .getReservedNumber()!= null ) {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+            Schedule scheduleById = hospitalService.getScheduleById(order.getScheduleId());
+            scheduleById.setReservedNumber(order.getReservedNumber());
+            scheduleById.setAvailableNumber(order.getAvailableNumber());
+            apiService.saveSchedule(scheduleById);
+        }
+        else{
+            Schedule scheduleById = hospitalService.getScheduleById(order.getScheduleId());
+            scheduleById.setReservedNumber(scheduleById.getReservedNumber() + 1 );
+            scheduleById.setAvailableNumber(scheduleById.getAvailableNumber() -1 );
+            apiService.saveSchedule(scheduleById);
+        }
     }
 }

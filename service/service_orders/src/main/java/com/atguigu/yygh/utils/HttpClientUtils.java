@@ -13,10 +13,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContextBuilder;
-import org.apache.http.conn.ssl.TrustStrategy;
-import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.conn.ssl.*;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -289,29 +286,34 @@ public class HttpClientUtils {
 				}
 			}).build();
 
-			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, new X509HostnameVerifier() {
-
-				@Override
-				public boolean verify(String arg0, SSLSession arg1) {
-					return true;
-				}
-
-				@Override
-				public void verify(String host, SSLSocket ssl)
-						throws IOException {
-				}
-
-				@Override
-				public void verify(String host, X509Certificate cert)
-						throws SSLException {
-				}
-
-				@Override
-				public void verify(String host, String[] cns,
-								   String[] subjectAlts) throws SSLException {
-				}
-
-			});
+//			SSLConnectionSocketFactory sslsf =
+//					new SSLConnectionSocketFactory(sslContext, new X509HostnameVerifier() {
+//
+//				@Override
+//				public boolean verify(String arg0, SSLSession arg1) {
+//					return true;
+//				}
+//
+//				@Override
+//				public void verify(String host, SSLSocket ssl)
+//						throws IOException {
+//				}
+//
+//				@Override
+//				public void verify(String host, X509Certificate cert)
+//						throws SSLException {
+//				}
+//
+//				@Override
+//				public void verify(String host, String[] cns,
+//								   String[] subjectAlts) throws SSLException {
+//				}
+//
+//			});
+			SSLConnectionSocketFactory sslsf =  new SSLConnectionSocketFactory(sslContext  ,
+					null ,
+					null ,
+					new DefaultHostnameVerifier());
 
 			return HttpClients.custom().setSSLSocketFactory(sslsf).build();
 
